@@ -8,7 +8,7 @@ import sys
 cmd = os.system
 
 def menu():
-    hello='kali_soft_install:\n1.***set_asus_wifi_off\n2.***set_update_sources\n3.***set_root_user_no_sound\n4.***set_sogoupinying\n5.***set_wps\n6.***set_flash\n7.***set_wanyi_cloud_music\n8.***set_docker\n9.***zsh_shell_\n-h.**help_mnue\nq or quit or exit to kill the python'
+    hello='kali_soft_install:\n1.***set_asus_wifi_off\n2.***set_update_sources\n3.***set_root_user_no_sound\n4.***set_sogoupinying\n5.***set_wps\n6.***set_flash\n7.***set_wanyi_cloud_music\n8.***set_docker\n9.***zsh_shell_\nh.***help_mnue\nq or quit or exit to kill the python'
     print hello
 
 def put():
@@ -101,7 +101,7 @@ while True:
         continue
     if chose == 'q' or chose == 'quit' or chose == 'exit':
         break
-    if chose == '-h':
+    if chose == 'h':
         menu()
         continue
     else:
