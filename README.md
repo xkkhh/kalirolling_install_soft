@@ -1,10 +1,6 @@
-我的博客:http:www.xkkhh.cn
-
-安装kalirolling的一些软件
-
 asus笔记本网卡硬件关闭执行命令:
 
-echo “options asus_nb_wmi wapf=4” | tee /etc/modprobe.d/asus_nb_wmi.conf
+echo "options asus_nb_wmi wapf=4" | tee /etc/modprobe.d/asus_nb_wmi.conf
 
 改更新源:
 
@@ -74,7 +70,7 @@ gdebi netease-cloud-music_1.0.0-2_amd64_deepin15.deb
 
 vim /usr/share/applications/netease-cloud-music.desktop
 修改Exec=netease-cloud-music %U
-为Exec=netease-cloud-music %U –no-sandbox
+为Exec=netease-cloud-music %U --no-sandbox
 
 docker的安装:
 
@@ -82,7 +78,7 @@ docker的安装:
 
 添加:deb http://http.debian.net/debian wheezy-backports main
 
-执行:apt-get update && apt-get install apt-transport-https ca-certificates && apt-key adv –keyserver hkp://p80.pool.sks-keyservers.net:80 –recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+执行:apt-get update && apt-get install apt-transport-https ca-certificates && apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 新文件:vim /etc/apt/sources.list.d/docker.list
 
@@ -93,3 +89,98 @@ docker的安装:
 启动服务:service docker start
 
 运行测试列子:docker run hello-world
+
+qq的安装:
+
+使用的wine qq
+
+wine插件下载:http://dl.winehq.org/wine/
+winetricks-zh：https://github.com/hillwoodroc/winetricks-zh/archive/master.zip
+
+1.winetricks-zh
+
+2.wine-mono(插件地址下载最新的)
+
+3.wine-gecko（插件地址下载最新的）
+
+4.W2KSP4_EN.EXE https://pan.baidu.com/s/1dFLC4al
+
+5.InstMsiW.exe https://pan.baidu.com/s/1dFLC4al
+
+6.simsun.ttc
+
+7.zh.reg
+
+64位kali先执行:dpkg --add-architecture i386
+
+winecfg
+
+mkdir /usr/share/fonts/windows/
+
+cd ~/.wine/drive_c/windows/fonts
+ln -s /usr/share/fonts/windows/simsun.ttc simsun.ttc
+ln -s /usr/share/fonts/windows/simsun.ttc simfang.ttc
+
+修改 ~/.wine/system.reg
+装好字体后，还要修改一下 Wine 的注册表设置，指定与字体相关的设置：
+gedit ~/.wine/system.reg
+（一定要使用 gedit 或其他支持 gb2312/utf8
+编码的编辑器修改这些文件，否则文件中的中文可能变乱码）
+搜索： LogPixels
+找到的行应该是：[System\\CurrentControlSet\\Hardware
+Profiles\\Current\\Software\\Fonts]
+将其中的：
+"LogPixels"=dword:00000060
+改为：
+"LogPixels"=dword:00000070
+搜索： FontSubstitutes
+找到的行应该是：[Software\\Microsoft\\Windows
+NT\\CurrentVersion\\FontSubstitutes]
+将其中的：
+"MS Shell Dlg"="Tahoma"
+"MS Shell Dlg 2″="Tahoma"
+改为：
+"MS Shell Dlg"="SimSun"
+"MS Shell Dlg 2″="SimSun"
+
+修改 ~/.wine/drive_c/windows/win.ini
+gedit ~/.wine/drive_c/windows/win.ini
+在文件末尾加入：
+[Desktop]
+menufontsize=13
+messagefontsize=13
+statusfontsize=13
+IconTitleSize=13
+
+regedit zh.reg
+
+从Windows目录下的Fonts里的simsun.ttc复制到/home/user/.wine/drive_c/windows/fonts里面
+
+存放两个msi文件的目录下打开终端，执行：wine msiexec /i wine-mono-X.X.X.msi
+
+wine msiexec /i wine_gecko-X.XX-x86.msi
+
+unzip winetricks-zh-master.zip
+
+mv winetricks-zh-master /opt/
+
+chmod -R a+x /opt/winetricks-zh-master
+
+cp /opt/winetricks-zh-master/winetricks-zh /usr/bin/
+
+apt-get install cabextract
+
+mkdir -p ~/.cache/winetricks/win2ksp4/
+
+mkdir -p ~/.cache/winetricks/msls31/
+
+cp W2KSP4_EN.EXE ~/.cache/winetricks/win2ksp4/
+cp InstMsiW.exe ~/.cache/winetricks/msls31/
+
+winetricks-zh qq
+
+接下来它会自动下载QQ8.9.1和vcran6、文泉驿字体等，这里的vranc6的安装程序还是乱码的
+这里的Ja就是确定，Nein就是取消，点击Ja。
+ 
+添加桌面图标:cp ~/.local/share/applications/wine/Programs/腾讯软件/QQ/腾讯QQ.desktop ~/Desktop/
+ 
