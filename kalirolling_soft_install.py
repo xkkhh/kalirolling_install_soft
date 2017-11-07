@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #encoding:utf-8
-#make by xkkhh
+#make by xkkhh date:Tue Nov  7 13:31:26 CST 2017
 
 import os
 import sys
@@ -32,9 +32,13 @@ def sound():
 
 def sogou():
     cmd('apt-get install fcitx && wget http://cdn2.ime.sogou.com/dl/index/1509619794/sogoupinyin_2.2.0.0102_amd64.deb && dpkg -X sogoupinyin_2.2.0.0102_amd64.deb sogou && dpkg -e sogoupinyin_2.2.0.0102_amd64.deb sogou/DEBIAN')
-    f = open('sogou/DEBIAN/control','w')
-    f.write('Package: sogoupinyin\nVersion: 2.2.0.0102\nArchitecture: amd64\nMaintainer: Ubuntu Kylin Team <ubuntukylin-members@lists.launchpad.net>\nInstalled-Size: 57287\nDepends: fcitx (>= 1:4.2.8.3-3~), fcitx-frontend-gtk2, fcitx-frontend-gtk3, fcitx-frontend-qt4, fcitx-module-kimpanel, im-config, lsb-release, unzip, zip, x11-utils, ibc6 (>= 2.8), libgcc1 (>= 1:4.1.1), libgdk-pixbuf2.0-0 (>= 2.22.0), libglib2.0-0 (>= 2.16.0), libidn11 (>= 1.13), libnotify4 (>= 0.7.0), libqt4-dbus (>= 4:4.8.0), libqt4-declarative (>= 4:4.8.0), libqt4-network (>= 4:4.8.0), libqtcore4 (>= 4:4.8.0), libqtgui4 (>= 4:4.8.0), libqtwebkit4, libstdc++6 (>= 4.6), libx11-6, zlib1g (>= 1:1.2.0)\nRecommends: fcitx-frontend-qt5, fonts-noto-cjk, dconf-gsettings-backend | gsettings-backend\nSection: non-free/utils\nPriority: optional\nHomepage: http://pinyin.sogou.com/linux\nDescription: Sogou Pinyin Input Method\n Based on web search engine technology, Sogou Pinyin input method is\n the next-generation input method designed for Internet users. As it\n is backed with search engine technology, user input method can be\n extremely fast, and it is much more advanced than other input method\n engines in terms of the volume of the vocabulary database and its\n accuracy. Sogou input method is the most popular input methods in\n China, and Sogou promises it will always be free of charge.\n')
+    f = open('sogou/DEBIAN/control','r')
+    s = f.read()
     f.close()
+    s = s.replace('Depends: fcitx (>= 1:4.2.8.3-3~), fcitx-frontend-gtk2, fcitx-frontend-gtk3, fcitx-frontend-qt4, fcitx-module-kimpanel, im-config, libopencc2 | libopencc1, lsb-release, unzip, zip, x11-utils, fcitx-libs (>= 4.2.7), fcitx-libs-qt (>= 4.2.7), libc6 (>= 2.8), libgcc1 (>= 1:4.1.1), libgdk-pixbuf2.0-0 (>= 2.22.0), libglib2.0-0 (>= 2.16.0), libidn11 (>= 1.13), libnotify4 (>= 0.7.0), libqt4-dbus (>= 4:4.8.0), libqt4-declarative (>= 4:4.8.0), libqt4-network (>= 4:4.8.0), libqtcore4 (>= 4:4.8.0), libqtgui4 (>= 4:4.8.0), libqtwebkit4, libstdc++6 (>= 4.6), libx11-6, zlib1g (>= 1:1.2.0)','Depends: fcitx (>= 1:4.2.8.3-3~), fcitx-frontend-gtk2, fcitx-frontend-gtk3, fcitx-frontend-qt4, fcitx-module-kimpanel, im-config, lsb-release, unzip, zip, x11-utils, libc6 (>= 2.8), libgcc1 (>= 1:4.1.1), libgdk-pixbuf2.0-0 (>= 2.22.0), libglib2.0-0 (>= 2.16.0), libidn11 (>= 1.13), libnotify4 (>= 0.7.0), libqt4-dbus (>= 4:4.8.0), libqt4-declarative (>= 4:4.8.0), libqt4-network (>= 4:4.8.0), libqtcore4 (>= 4:4.8.0), libqtgui4 (>= 4:4.8.0), libqtwebkit4, libstdc++6 (>= 4.6), libx11-6, zlib1g (>= 1:1.2.0)')
+    f1 = open('sogou/DEBIAN/control','w')
+    f1.write(s)
+    f1.close()
     cmd('dpkg-deb -b sogou sogou.deb && dpkg -i sogou.deb && rm -rf /etc/apt/sources.list.d/*')
 
 def wps():
@@ -44,10 +48,14 @@ def flash():
     cmd('wget https://fpdownload.adobe.com/get/flashplayer/pdc/27.0.0.183/flash_player_npapi_linux.x86_64.tar.gz &&  tar -zxvf flash_player_npapi_linux.x86_64.tar.gz && cp libflashplayer.so /usr/lib/mozilla/plugins/ && cp -r usr/* /usr/')
 
 def music():
-    cmd('wget http://s1.music.126.net/download/pc/netease-cloud-music_1.0.0-2_amd64_deepin15.deb && dpkg -i netease-cloud-music_1.0.0-2_amd64_deepin15.deb && apt-get -f install')
-    f = open('/usr/share/applications/netease-cloud-music.desktop','w')
-    f.write('[Desktop Entry]\nVersion=1.0\nType=Application\nName=NetEase Cloud Music\nName[zh_CN]=网易云音乐\nName[zh_TW]=網易雲音樂\nComment=NetEase Cloud Music\nComment[zh_CN]=网易云音乐\nComment[zh_TW]=網易雲音樂\nIcon=netease-cloud-music\nExec=netease-cloud-music %U –no-sandbox\nComment=NetEase Cloud Music\nCategories=AudioVideo;Player;\nTerminal=false\nStartupNotify=true\nMimeType=audio/aac;audio/flac;audio/mp3;audio/mp4;audio/mpeg;audio/ogg;audio/x-ape;audio/x-flac;audio/x-mp3;audio/x-mpeg;audio/x-ms-wma;audio/x-vorbis;audio/x-vorbis+ogg;audio/x-wav;')
+    cmd('wget http://s1.music.126.net/download/pc/netease-cloud-music_1.0.0-2_amd64_deepin15.deb && apt-get install gdebi && gdebi netease-cloud-music_1.0.0-2_amd64_deepin15.deb')
+    f = open('/usr/share/applications/netease-cloud-music.desktop','r')
+    s = f.read()
     f.close()
+    s = s.replace('Exec=netease-cloud-music %U','Exec=netease-cloud-music %U -no-sandbox')
+    f1 = open('/usr/share/applications/netease-cloud-music.desktop','w')
+    f1.write(s)
+    f1.close()
 
 def docker():
     f = open('/etc/apt/sources.list.d/backports.list','w')
