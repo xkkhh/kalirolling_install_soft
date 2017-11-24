@@ -42,7 +42,7 @@ def sogou():
     cmd('dpkg-deb -b sogou sogou.deb && dpkg -i sogou.deb && rm -rf /etc/apt/sources.list.d/*')
 
 def wps():
-    cmd('wget http://www.xkkhh.cn/linux-wps-office-fonts.zip && wget http://ftp.tw.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb && wget http://kdl1.cache.wps.com/ksodl/download/linux/a21//wps-office_10.1.0.5707~a21_amd64.deb && dpkg -i libpng12-0_1.2.49-1+deb7u2_amd64.deb && dpkg -i wps-office_10.1.0.5707~a21_amd64.deb && unzip linux-wps-office-fonts.zip && cp wps-office/* /usr/share/fonts/')
+    cmd('wget http://ftp.tw.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb && wget http://kdl1.cache.wps.com/ksodl/download/linux/a21//wps-office_10.1.0.5707~a21_amd64.deb && dpkg -i libpng12-0_1.2.49-1+deb7u2_amd64.deb && dpkg -i wps-office_10.1.0.5707~a21_amd64.deb && unzip wps_symbol_fonts.zip -d wps-fooice && cp wps-office/* /usr/share/fonts/')
 
 def flash():
     cmd('wget https://fpdownload.adobe.com/get/flashplayer/pdc/27.0.0.183/flash_player_npapi_linux.x86_64.tar.gz &&  tar -zxvf flash_player_npapi_linux.x86_64.tar.gz && cp libflashplayer.so /usr/lib/mozilla/plugins/ && cp -r usr/* /usr/')
