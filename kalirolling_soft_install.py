@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #encoding:utf-8
-#make by xkkhh date:Tue Nov  7 13:31:26 CST 2017
+#make by xkkhh 
+#date:Sun Dec  3 21:09:50 CST 2017
 
 import os
 import sys
@@ -42,10 +43,10 @@ def sogou():
     cmd('dpkg-deb -b sogou sogou.deb && dpkg -i sogou.deb && rm -rf /etc/apt/sources.list.d/*')
 
 def wps():
-    cmd('wget http://ftp.tw.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb && wget http://kdl1.cache.wps.com/ksodl/download/linux/a21//wps-office_10.1.0.5707~a21_amd64.deb && dpkg -i libpng12-0_1.2.49-1+deb7u2_amd64.deb && dpkg -i wps-office_10.1.0.5707~a21_amd64.deb && unzip wps_symbol_fonts.zip -d wps-fooice && cp wps-office/* /usr/share/fonts/')
+    cmd('wget http://ftp.tw.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.49-1+deb7u2_amd64.deb && wget http://kdl1.cache.wps.com/ksodl/download/linux/a21//wps-office_10.1.0.5707~a21_amd64.deb && dpkg -i libpng12-0_1.2.49-1+deb7u2_amd64.deb && dpkg -i wps-office_10.1.0.5707~a21_amd64.deb && unzip wps_symbol_fonts.zip -d wps-office && cp wps-office/* /usr/share/fonts/')
 
 def flash():
-    cmd('wget https://fpdownload.adobe.com/get/flashplayer/pdc/27.0.0.183/flash_player_npapi_linux.x86_64.tar.gz &&  tar -zxvf flash_player_npapi_linux.x86_64.tar.gz && cp libflashplayer.so /usr/lib/mozilla/plugins/ && cp -r usr/* /usr/')
+    cmd('wget https://fpdownload.adobe.com/get/flashplayer/pdc/27.0.0.187/flash_player_npapi_linux.x86_64.tar.gz &&  tar -zxvf flash_player_npapi_linux.x86_64.tar.gz && cp libflashplayer.so /usr/lib/mozilla/plugins/ && cp -r usr/* /usr/')
 
 def music():
     cmd('wget http://s1.music.126.net/download/pc/netease-cloud-music_1.0.0-2_amd64_deepin15.deb && apt-get install gdebi && gdebi netease-cloud-music_1.0.0-2_amd64_deepin15.deb')
@@ -105,5 +106,5 @@ while True:
         menu()
         continue
     else:
-        print 'check you\'s input.input -h for help!'
+        print 'check you\'s input,h for help!'
         continue
