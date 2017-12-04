@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #encoding:utf-8
 #make by xkkhh 
-#date:Sun Dec  3 21:09:50 CST 2017
+#date:Mon Dec  4 08:56:55 CST 2017
 
 import os
 import sys
@@ -27,6 +27,7 @@ def sources():
     cmd('apt-get update && apt-get upgrade && apt-get dist-upgrade && apt-get autoremove')
 
 def sound():
+    cmd('usermod -a -G pulse-access root && gpasswd -a root pulse && gpasswd -a root pulse-access')
     f = open('/etc/default/pulseaudio','w')
     f.write('PULSEAUDIO_SYSTEM_START=1\nDISALLOW_MODULE_LOADING=0')
     f.close()
