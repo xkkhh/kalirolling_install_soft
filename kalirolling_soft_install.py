@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#encoding:utf-8
+#coding:utf-8
 #make by xkkhh 
 #date:Mon Dec  4 08:56:55 CST 2017
 
